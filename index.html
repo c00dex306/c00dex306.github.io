@@ -13,9 +13,7 @@
             }
             
             function onType() {
-                var rnd = Math.random() * 2 + 4;
-                
-                rnd = Math.ceil(rnd);
+                var rnd = Math.floor(Math.random() * 2) + 4;
                 
                 var hiddenSub = preCodeHidden.innerHTML.substr(0, rnd);
                 var splitter = hiddenSub.split("&");
@@ -57,7 +55,7 @@
     </head>
     <body onkeypress="onType(); return false;">
         <div id="content">
-            <pre id="preCodeVisible">v. alpha 0.3b<br /></pre>
+            <pre id="preCodeVisible">v. alpha 0.3c<br /></pre>
 <pre id="preCodeHidden">
 static int debug_pci;
 
