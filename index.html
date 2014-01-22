@@ -21,6 +21,8 @@
                 var hiddenSub = preCodeHidden.innerHTML.substr(0, rnd);
                 preCodeHidden.innerHTML = preCodeHidden.innerHTML.substr(rnd);
                 preCodeVisible.innerHTML += hiddenSub;
+                
+                window.scrollTo(0, document.body.scrollHeight);
             }
         </script>
         <style>
@@ -36,6 +38,9 @@
             }
             #preCodeHidden {
                 display:none;
+            }
+            ::-webkit-scrollbar { 
+                display: none; 
             }
         </style>
     </head>
