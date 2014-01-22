@@ -1,0 +1,89 @@
+<DOCTYPE HTML />
+<html>
+    <head>
+        <title>gymolching terminal root</title>
+        <script type="application/javascript">
+            var preCodeVisible;
+            var preCodeHidden;
+            
+            function go() {
+                //alert ("");
+                preCodeVisible = document.getElementById("preCodeVisible");
+                preCodeHidden = document.getElementById("preCodeHidden");
+            }
+            
+            function onType() {
+                var rnd = Math.random() * 5 + 2;
+                
+                rnd = Math.ceil(rnd);
+                
+                var hiddenSub = preCodeHidden.innerHTML.substr(0, rnd);
+                preCodeHidden.innerHTML = preCodeHidden.innerHTML.substr(rnd);
+                preCodeVisible.innerHTML += hiddenSub;
+            }
+        </script>
+        <style>
+            body {
+                background-color:black;
+            }
+            #content {
+                color:#0f0;
+                font-family:monospace;
+            }
+            #preCodeVisisble {
+                
+            }
+            #preCodeHidden {
+                display:none;
+            }
+        </style>
+    </head>
+    <body onkeypress="onType(); return false;">
+        <div id="content">
+<pre id="preCodeVisible">
+package me.moehritz.bcex;
+</pre>
+<pre id="preCodeHidden">
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class SQLConnectionManager {
+
+	private static Connection dbConnection = null;
+
+	protected static Connection getConnection() {
+		try {
+			if ((dbConnection == null) || (dbConnection.isClosed())) {
+				Class.forName("com.mysql.jdbc.Driver");
+				dbConnection = DriverManager.getConnection(Settings.dbUrl,
+						Settings.dbUsername, Settings.dbPassword);
+			}
+			return dbConnection;
+		} catch (SQLException e) {
+			BCEX.getInstance().error("Error getting SQL-connection: " + e.getMessage());
+			e.printStackTrace();
+			return null;
+		} catch (ClassNotFoundException e) {
+			BCEX.getInstance().error("Error getting SQL-connection: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	protected static void closeConnection() {
+		try {
+			if ((dbConnection != null) && (!dbConnection.isClosed()))
+				dbConnection.close();
+		} catch (SQLException e) {
+			BCEX.getInstance().error("Error closing SQL-connection: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+}
+</pre>
+        </div>
+        <script>go();</script>
+    </body>
+</html>
