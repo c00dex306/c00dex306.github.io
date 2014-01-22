@@ -13,15 +13,25 @@
             }
             
             function onType() {
-                var rnd = Math.random() * 5 + 2;
+                var rnd = Math.random() * 5 + 4;
                 
                 rnd = Math.ceil(rnd);
                 
                 var hiddenSub = preCodeHidden.innerHTML.substr(0, rnd);
+                var splitter = hiddenSub.split("&");
+                console.log("splitter=%o", splitter);
+                
+                if (splitter.length > 1) {
+                    if (splitter[0].length > 0) {
+                        hiddenSub = splitter[0]; 
+                    } else {
+                        hiddenSub = "&" + splitter[1]; 
+                    }
+                    rnd = hiddenSub.length;
+                }
+
                 preCodeHidden.innerHTML = preCodeHidden.innerHTML.substr(rnd);
                 preCodeVisible.innerHTML += hiddenSub;
-                
-                window.scrollTo(0, document.body.scrollHeight);
             }
         </script>
         <style>
@@ -36,7 +46,8 @@
                 
             }
             #preCodeHidden {
-                display:none;
+                display:hidden;
+                color:#f00;
             }
             ::-webkit-scrollbar { 
                 display: none; 
@@ -45,10 +56,11 @@
     </head>
     <body onkeypress="onType(); return false;">
         <div id="content">
-            <code>
-                <pre id="preCodeVisible">v. alpha 0.2<br /></pre>
-            </code>
+            <pre id="preCodeVisible">v. alpha 0.2<br /></pre>
 <pre id="preCodeHidden">
+
+lala&amp;lasasdas&amp;aasdasa&amp;asasdsa&amp;asdasdsa&amp;asdasas
+
 static int debug_pci;
 
 static void pcibios_bus_report_status(struct pci_bus *bus, u_int status_mask, int warn)
