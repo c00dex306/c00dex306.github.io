@@ -13,7 +13,7 @@
             }
             
             function onType() {
-                var rnd = Math.floor(Math.random() * 2) + 4;
+                var rnd = Math.ceil(Math.random() * 2 + 4);
                 
                 var hiddenSub = preCodeHidden.innerHTML.substr(0, rnd);
                 var splitter = hiddenSub.split("&");
@@ -38,9 +38,22 @@
             body {
                 background-color:black;
             }
+            #backgimg {
+                position:fixed;
+                left:50%;
+                top:50%;
+                height:300px;
+                width:300px;
+                margin-left:-150px;
+                margin-top:-150px;
+                background-image:url(logo.png);
+                z-index:1;
+            }
             #content {
+                position:absolute;
                 color:#0f0;
                 font-family:monospace;
+                z-index:2;
             }
             #preCodeVisisble {
                 
@@ -54,6 +67,7 @@
         </style>
     </head>
     <body onkeypress="onType(); return false;">
+        <div id="backgimg"></div>
         <div id="content">
             <pre id="preCodeVisible">v. alpha 0.3c<br /></pre>
 <pre id="preCodeHidden">
